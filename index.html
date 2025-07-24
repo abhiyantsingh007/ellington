@@ -3,191 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AiroPay</title>
+  <title>AiroPay 3D Dark Theme</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #0557a5, #00c2ff);
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-      animation: fadeInDown 1.2s ease-in-out;
-    }
-    header h1 {
-      font-size: 3rem;
-    }
-    nav {
-      background: #004b8d;
-      padding: 10px 20px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #00c2ff;
-    }
-    section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
-      animation: fadeIn 1s ease;
-    }
-    section h2 {
-      font-size: 2rem;
-      color: #004b8d;
-      margin-bottom: 20px;
-    }
-    .features, .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .card {
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      animation: zoomIn 0.6s ease-in-out;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      animation: bounce 0.4s ease;
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 15px;
-    }
-    footer {
-      background: #004b8d;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    @keyframes bounce {
-      0% { transform: translateY(-5px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(-5px); }
-    }
-    @media (max-width: 768px) {
-      header h1 { font-size: 2rem; }
-      nav { font-size: 0.9rem; }
-    }
+    *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+    body{font-family:'Segoe UI',sans-serif;background:#000;color:#ccc;overflow-x:hidden;position:relative;}
+    /* Scene wrapper for 3D tilt */
+    .scene{perspective:1000px;}
+    .scene-inner{transform-style:preserve-3d;transition:transform .1s ease-out;}
+    /* Particle Network Background */
+    #bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;}
+    /* Gradient Overlay */
+    body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(60deg,#004b8d88,#00c2ff55,#0f0a);z-index:-1;pointer-events:none;animation:gradientShift 20s ease infinite;}
+    @keyframes gradientShift{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+    /* Navigation */
+    nav{background:rgba(0,0,0,0.8);padding:10px 20px;text-align:center;position:sticky;top:0;z-index:2;}
+    nav a{color:#8f8;margin:0 15px;text-decoration:none;font-weight:600;transition:color .3s;}nav a:hover{color:#0f0;}
+    /* Header */
+    header{height:60vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#fff;z-index:1;}
+    header h1{font-size:3rem;text-shadow:0 2px 8px rgba(0,0,0,0.7);animation:fadeIn 1.5s ease both;}
+    header p{font-size:1.2rem;margin-top:8px;text-shadow:0 1px 4px rgba(0,0,0,0.6);animation:fadeIn 1.5s ease both .5s;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    /* Sections with Parallax */
+    section{position:relative;padding:80px 20px;text-align:center;}
+    section::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);}
+    section>div{position:relative;z-index:1;}
+    #about{background:url('https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=1500&q=80') center/cover fixed;}
+    #features{background:url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1500&q=80') center/cover fixed;}
+    #services{background:url('https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=1500&q=80') center/cover fixed;}
+    #contact{background:url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1500&q=80') center/cover fixed;}
+    section h2{font-size:2.25rem;color:#8f8;margin-bottom:20px;text-shadow:0 2px 8px rgba(0,0,0,0.7);animation:fadeIn 1.2s both;}
+    section p{max-width:700px;margin:auto;font-size:1.1rem;color:#ddd;animation:fadeIn 1.2s both .3s;}
+    /* Cards */
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:40px;}
+    .card{background:rgba(20,20,20,0.85);border-radius:12px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.2);cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;filter:opacity(0);animation:revealCard .6s forwards;}
+    .card:hover{transform:scale(1.05);box-shadow:0 14px 30px rgba(0,0,0,0.3);}
+    .card img{width:100%;height:180px;object-fit:cover;transition:filter .3s;} .card:hover img{filter:grayscale(0);} .card-content{padding:20px;text-align:left;color:#ccc;} .card-content h3{margin-bottom:14px;color:#0f0;} .card-content p{font-size:1rem;}
+    @keyframes revealCard{to{filter:opacity(1);} }
+    /* Footer */
+    footer{background:rgba(0,0,0,0.8);color:#8f8;text-align:center;padding:28px 20px;}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to AiroPay</h1>
-    <p>Your smart way to send, spend & save</p>
-  </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#features">Features</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about">
-    <h2>About Us</h2>
-    <p>AiroPay is a secure and innovative payment platform designed to make your transactions simple and smart. Whether you’re sending money internationally or paying bills locally, AiroPay provides fast and reliable service from your phone.</p>
-  </section>
-
-  <section id="features">
-    <h2>Platform Features</h2>
-    <div class="features">
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095" alt="International Transfers">
-        <h3>International Transfers</h3>
-        <p>Send money globally with ease and excellent exchange rates.</p>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7" alt="Mobile Top-Up">
-        <h3>Mobile Top-Up</h3>
-        <p>Recharge your mobile instantly, anytime, anywhere.</p>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e" alt="Utility Payments">
-        <h3>Utility Payments</h3>
-        <p>Pay electricity, water, and other bills directly from your phone.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="services">
-    <h2>What We Offer</h2>
-    <div class="services">
-      <div class="card">
-        <img src="https://picsum.photos/id/1011/600/400" alt="Secure Transactions">
-        <h3>Secure Transactions</h3>
-        <p>Advanced security protocols ensure your data and money are always safe.</p>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/id/1012/600/400" alt="Customer Support">
-        <h3>Customer Support</h3>
-        <p>We’re here to help 24/7 with any issues or questions.</p>
-      </div>
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97" alt="Mobile App">
-        <h3>Mobile App</h3>
-        <p>Our user-friendly app is available on Android and iOS.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: support@airopay.ae</p>
-    <p>Phone: +971 4 123 4567</p>
-    <p>Location: Dubai, United Arab Emirates</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 AiroPay. All rights reserved.</p>
-  </footer>
-
-  <script>
-    // Smooth Scroll on Nav Clicks
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+  <canvas id="bgCanvas"></canvas>
+  <div class="scene">
+    <div class="scene-inner">
+      <header>
+        <h1>Welcome to AiroPay</h1>
+        <p>Your smart way to send, spend & save</p>
+      </header>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <section id="about">
+        <div>
+          <h2>About Us</h2>
+          <p>AiroPay is a secure and innovative payment platform designed to make your transactions simple and smart. Whether you’re sending money internationally or paying bills locally, AiroPay provides fast and reliable service from your phone.</p>
+        </div>
+      </section>
+      <section id="features">
+        <div>
+          <h2>Platform Features</h2>
+          <div class="cards-grid">
+            <div class="card" style="animation-delay:0.2s;"><img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80" alt="International Transfers"><div class="card-content"><h3>International Transfers</h3><p>Send money globally with ease and excellent exchange rates.</p></div></div>
+            <div class="card" style="animation-delay:0.4s;"><img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" alt="Mobile Top-Up"><div class="card-content"><h3>Mobile Top-Up</h3><p>Recharge your mobile instantly, anytime, anywhere.</p></div></div>
+            <div class="card" style="animation-delay:0.6s;"><img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?auto=format&fit=crop&w=800&q=80" alt="Utility Payments"><div class="card-content"><h3>Utility Payments</h3><p>Pay electricity, water, and other bills directly from your phone.</p></div></div>
+          </div>
+        </div>
+      </section>
+      <section id="services">
+        <div>
+          <h2>What We Offer</h2>
+          <div class="cards-grid">
+            <div class="card" style="animation-delay:0.8s;"><img src="https://picsum.photos/id/1011/800/500" alt="Secure Transactions"><div class="card-content"><h3>Secure Transactions</h3><p>Advanced security protocols ensure your data and money are always safe.</p></div></div>
+            <div class="card" style="animation-delay:1s;"><img src="https://picsum.photos/id/1012/800/500" alt="Customer Support"><div class="card-content"><h3>Customer Support</h3><p>We're here to help 24/7 with any issues or questions.</p></div></div>
+            <div class="card" style="animation-delay:1.2s;"><img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=800&q=80" alt="Mobile App"><div class="card-content"><h3>Mobile App</h3><p>Our user-friendly app is available on Android and iOS.</p></div></div>
+          </div>
+        </div>
+      </section>
+      <section id="contact">
+        <div>
+          <h2>Contact Us</h2>
+          <p>Email: support@airopay.ae<br/>Phone: +971 4 123 4567<br/>Location: Dubai, United Arab Emirates</p>
+        </div>
+      </section>
+      <footer><p>&copy; 2025 AiroPay. All rights reserved.</p></footer>
+      <script>
+        // Mouse-driven 3D tilt
+        const sceneInner = document.querySelector('.scene-inner');
+        window.addEventListener('mousemove', e => {
+          const cx = window.innerWidth / 2;
+          const cy = window.innerHeight / 2;
+          const dx = (e.clientX - cx) / cx;
+          const dy = (e.clientY - cy) / cy;
+          sceneInner.style.transform = `rotateX(${dy * 5}deg) rotateY(${dx * 5}deg)`;
         });
-      });
-    });
-  </script>
+        // Smooth scroll
+        document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', e => {
+          e.preventDefault();
+          document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        }));
+        // Particle network
+        const canvas = document.getElementById('bgCanvas'), ctx = canvas.getContext('2d');
+        let ps = [], max = 200, cols = ['#0f0', '#00c2ff', '#0557a5'];
+        function init(){canvas.width=innerWidth;canvas.height=innerHeight;ps=[];for(let i=0;i<max;i++){ps.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, dx:(Math.random()-0.5)*1.2, dy:(Math.random()-0.5)*1.2, r:Math.random()*2+1, c:cols[Math.floor(Math.random()*cols.length)]});}};
+        function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ps.forEach((p,i)=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,2*Math.PI);ctx.fillStyle=p.c;ctx.fill();for(let j=i+1;j<max;j++){let q=ps[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.hypot(dx,dy);if(d<120){ctx.strokeStyle=`rgba(0,255,0,${1-d/120})`;ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}}p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(draw);};
+        window.addEventListener('resize', init);
+        init(); draw();
+      </script>
+    </div>
+  </div>
 </body>
 </html>
