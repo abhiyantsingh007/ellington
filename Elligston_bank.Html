@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiroPay Technologies</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    header { background: #005f73; color: #fff; position: fixed; width: 100%; top: 0; z-index: 1000; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; }
+    .logo { font-size: 1.5rem; font-weight: bold; }
+    .nav-menu { list-style: none; display: flex; }
+    .nav-menu li a { color: #fff; text-decoration: none; padding: 0.75rem 1rem; display: block; }
+    .nav-menu li a:hover { background: #0a9396; border-radius: 4px; }
+    .nav-toggle-label { display: none; cursor: pointer; }
+    .nav-toggle-label span,
+    .nav-toggle-label span::before,
+    .nav-toggle-label span::after {
+      display: block; background: #fff; height: 2px; width: 25px; border-radius: 2px; position: relative;
+    }
+    .nav-toggle-label span::before { content: ''; position: absolute; top: -8px; }
+    .nav-toggle-label span::after { content: ''; position: absolute; top: 8px; }
+    #nav-toggle { display: none; }
+
+    .hero { background: url('https://images.pexels.com/photos/30572289/pexels-photo-30572289.jpeg?cs=srgb&dl=pexels-jakubzerdzicki-30572289.jpg&fm=jpg') no-repeat center/cover; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 2rem; }
+    .hero h1 { font-size: 2.5rem; color: #fff; margin-bottom: 1rem; }
+    .hero p { color: #e0f2f1; max-width: 700px; margin: 0 auto 1.5rem; }
+    .btn { background: #0a9396; color: #fff; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 4px; }
+    .btn:hover { background: #94d2bd; }
+
+    section { padding: 4rem 2rem; margin-top: 4rem; }
+    section h2 { text-align: center; margin-bottom: 2rem; color: #005f73; }
+    .services .service-container { display: flex; flex-wrap: wrap; justify-content: space-around; }
+    .service { flex: 1 1 250px; margin: 1rem; text-align: center; }
+    .service img { width: 100%; max-width: 300px; height: auto; border-radius: 8px; }
+    .service h3 { margin-top: 1rem; color: #0a9396; }
+    .service p { margin-top: 0.5rem; }
+    .features-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 800px; margin: 0 auto; }
+    .features-list li { background: #e9d8a6; padding: 1rem; border-radius: 4px; text-align: center; }
+    .about p, .contact p { max-width: 800px; margin: 0 auto 1rem; }
+    footer { background: #001219; color: #fff; text-align: center; padding: 1rem; }
+    footer a { color: #94d2bd; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      nav { flex-wrap: wrap; }
+      .nav-toggle-label { display: block; }
+      .nav-menu { display: none; width: 100%; flex-direction: column; }
+      #nav-toggle:checked + .nav-toggle-label + .nav-menu { display: flex; }
+      .nav-menu li { text-align: center; }
+      .hero { height: auto; padding: 4rem 1rem; }
+      .hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">AiroPay</div>
+    <input type="checkbox" id="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
+    <ul class="nav-menu">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1>Effortlessly Streamline Your Business Payments</h1>
+      <p>We help you with all banking integrations and connections, enabling transactions from your application or device at super-fast speed, securely and with no hidden charges...</p>
+      <a href="#contact" class="btn">Get Started</a>
+    </div>
+  </section>
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-container">
+      <div class="service">
+        <img src="https://images.pexels.com/photos/33045170/pexels-photo-33045170.jpeg" alt="...">
+        <h3>Banking Integration</h3>
+        <p>Seamlessly integrate with banks...</p>
+      </div>
+      <div class="service">
+        <img src="https://images.pexels.com/photos/30572289/pexels-photo-30572289.jpeg" alt="...">
+        <h3>Fintech Solutions</h3>
+        <p>Access services like bill payments...</p>
+      </div>
+    </div>
+  </section>
+  <section id="features" class="features">
+    <h2>Platform Features</h2>
+    <ul class="features-list">
+      <li>API-First Architecture</li>
+      <li>Real-Time Transaction Processing</li>
+    </ul>
+  </section>
+  <section id="about" class="about">
+    <h2>About AiroPay</h2>
+    <p>AiroPay Technologies is a Dubai-based FinTech platform...</p>
+  </section>
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Email:</strong> <a href="mailto:support@airopay.com">support@airopay.com</a></p>
+    <p><strong>Phone:</strong> +971 4 577 2687</p>
+    <p><strong>Address:</strong> DIFC, Dubai, UAE</p>
+  </section>
+</main>
+<footer>
+  <p>&copy; 2025 AiroPay Ltd. All rights reserved.</p>
+  <p><a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+</footer>
+<script>
+  document.querySelectorAll('nav .nav-menu a').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const headerOffset = document.querySelector('header').offsetHeight;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+      document.getElementById('nav-toggle').checked = false;
+    });
+  });
+</script>
+</body>
+</html>
